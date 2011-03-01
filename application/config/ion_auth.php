@@ -22,7 +22,6 @@
 	 **/
 	$config['tables']['groups']  = 'groups';
 	$config['tables']['users']   = 'users';
-        // @todo - change table in db to user_meta
 	$config['tables']['meta']    = 'user_meta';
 	
 	/**
