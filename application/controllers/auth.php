@@ -45,6 +45,7 @@ class Auth extends Controller {
 	function login()
 	{
 		$this->data['title'] = "Login";
+                $this->data['main_content'] = 'auth/login';
 
 		//validate form input
 		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
@@ -82,8 +83,9 @@ class Auth extends Controller {
 				'id' => 'password',
 				'type' => 'password',
 			);
+                        
 
-			$this->load->view('auth/login', $this->data);
+			$this->load->view('includes/template', $this->data);
 		}
 	}
 

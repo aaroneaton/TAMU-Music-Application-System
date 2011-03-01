@@ -5,4 +5,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
+        <div id="header">
+            <h1>Header</h1>
+        </div>
         <div id="container">
