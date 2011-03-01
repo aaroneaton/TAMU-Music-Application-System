@@ -1,3 +1,8 @@
-Add info here.
+#############################################
+##### Installing the app on your system #####
+#############################################
 
-I have now created a branch called aaron_working
+1. Copy files within the 'install' directory to their respective directory
+    ( ex. install/application/config/database.php goes to
+          /application/config/database.php )
+2. Input configuration settings in those config files.
