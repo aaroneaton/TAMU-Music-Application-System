@@ -37,7 +37,8 @@ class Auth extends Controller {
 
 			//list the users
 			$this->data['users'] = $this->ion_auth->get_users_array();
-			$this->load->view('auth/index', $this->data);
+                        $this->data['main_content'] = 'auth/index';
+			$this->load->view('includes/template', $this->data);
 		}
 	}
 
@@ -45,6 +46,7 @@ class Auth extends Controller {
 	function login()
 	{
 		$this->data['title'] = "Login";
+                // $this->data['main_content'] = 'auth/login';
 
 		//validate form input
 		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
@@ -82,6 +84,7 @@ class Auth extends Controller {
 				'id' => 'password',
 				'type' => 'password',
 			);
+                        
 
 			$this->load->view('auth/login', $this->data);
 		}
@@ -354,7 +357,8 @@ class Auth extends Controller {
 				'type' => 'password',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
-			$this->load->view('auth/create_user', $this->data);
+			$this->data['main_content'] = 'auth/create_user';
+                        $this->load->view('includes/template', $this->data);
 		}
 	}
 
