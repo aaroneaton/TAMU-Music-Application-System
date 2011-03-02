@@ -13,6 +13,6 @@
     </head>
     <body>
         <div class="container">
-        <div id="header">
+        <div id="header" class="span-24 last">
             <h1>Header</h1>
         </div>

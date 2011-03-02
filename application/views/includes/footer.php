@@ -1,7 +1,7 @@
 
 
 
-<div id="footer">
+<div id="footer" class="span-24 last">
     <h3>Footer</h3>
 </div>
 </div><!-- End div 'container -->
