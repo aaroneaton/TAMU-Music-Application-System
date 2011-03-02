@@ -139,7 +139,8 @@ class Auth extends Controller {
 			);
 
 			//render
-			$this->load->view('auth/change_password', $this->data);
+			$this->data['main_content'] = 'auth/change_password';
+                        $this->load->view('includes/template', $this->data);
 		}
 		else
 		{
