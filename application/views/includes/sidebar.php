@@ -14,7 +14,7 @@
 <?php elseif($this->ion_auth->is_group('applicants')) : ?>
 
     <?php // @todo - Should only show if application does not exist ?>
-    <li><?php echo anchor('apply/new', 'Start Application'); ?></li>
+    <li><?php echo anchor('apply/create_app', 'Start Application'); ?></li>
 
     <?php // @todo - Should only show if application exists ?>
     <li><?php echo anchor('apply/view', 'View Application'); ?></li>
