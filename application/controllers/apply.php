@@ -42,6 +42,12 @@ class Apply extends CI_Controller {
                 'maxlength' => '3'
             );
 
+            // Attributes for Interested Areas fieldset
+            $data['inst_area_field'] = array(
+                'id'    => 'inst_area_field',
+                'class' => 'span-10 last'
+            );
+
             // Attributes for Interested Areas
             $data['inst_areas'] = array(
                 'composition'   => array(
