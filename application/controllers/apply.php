@@ -30,10 +30,60 @@ class Apply extends CI_Controller {
      */
     function create_form()
     {
+        $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
 
+        if($this->form_validation->run() == FALSE)
+        {
+            // Attributes for Current GPA
+            $data['curr_gpa'] = array(
+                'name'      => 'curr_gpa',
+                'id'        => 'curr_gpa',
+                'value'     => set_value('curr_gpa'),
+                'maxlength' => '3'
+            );
 
-        $data['main_content'] = 'apply/create_form_view';
-        $this->load->view('includes/template', $data);
+            // Attributes for Interested Areas
+            $data['inst_areas'] = array(
+                'composition'   => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'composition'
+                ),
+                'musc_hist'      => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'musc_hist'
+                ),
+                'musc_theo'      => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'musc_theo'
+                ),
+                'ethno_musc'      => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'ethno_musc'
+                ),
+                'musc_tech'      => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'musc_tech'
+                ),
+                'musc_perf'      => array(
+                        'name'      => 'inst_areas[]',
+                        'id'        => 'inst_areas',
+                        'value'     => 'musc_perf'
+                ),
+            );
+
+            $data['main_content'] = 'apply/create_form_view';
+            $this->load->view('includes/template', $data);
+        }
+        else
+        {
+            $data['main_content'] = 'apply/create_success_view';
+            $this->load->view('includes/template', $data);
+        }
     }
 
 }
