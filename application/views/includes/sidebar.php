@@ -28,7 +28,9 @@
 <?php // If user is logged in and a recommender, show Recommendation stuff ?>
 <?php elseif($this->ion_auth->is_group('recommenders')) : ?>
 
-    <p>You are a recommender.</p>
+    <li><?php echo anchor('rec/new', 'Start New Recommendation'); ?> </li>
+
+    <li><?php echo anchor('rec/view', 'View Recommendations'); ?></li>
 
 <?php // If user is logged in and a reviewer, show Review stuff ?>
 <?php elseif($this->ion_auth->is_group('reviewers')) : ?>
