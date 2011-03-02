@@ -35,7 +35,7 @@
 <?php // If user is logged in and a reviewer, show Review stuff ?>
 <?php elseif($this->ion_auth->is_group('reviewers')) : ?>
 
-    <p>You are a reviewer.</p>
+    <li><?php echo anchor('review', 'View Applications'); ?></li>
 
 <?php endif; ?>
 
