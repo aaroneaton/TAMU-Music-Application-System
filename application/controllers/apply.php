@@ -160,7 +160,23 @@ class Apply extends CI_Controller {
 
             /**** Start Transfer Fieldset ****/
 
+            // Attributes for Transfer Fieldset
+            $data['transfer_field'] = array(
+                'id'    => 'transfer_field',
+                'class' => 'span-10 last'
+            );
 
+            // Attributes for Current Institution
+            $data['curr_inst'] = array(
+                'name'  => 'curr_inst',
+                'id'    => 'curr_inst'
+            );
+
+            // Attributes for Current Major
+            $data['curr_maj'] = array(
+                'name'  => 'curr_maj',
+                'id'    => 'curr_maj'
+            );
 
             /**** End Transfer Fieldset ****/
 

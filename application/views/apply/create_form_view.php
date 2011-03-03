@@ -65,11 +65,15 @@
 
 <?php echo form_fieldset_close(); ?>
 
-<?php echo form_fieldset('Transfer Students Only'); ?>
+<?php echo form_fieldset('Transfer Students Only', $transfer_field); ?>
 
     <!-- input - Current institution -->
-
+    <h5>Current Institution:</h5>
+    <?php echo form_input($curr_inst, set_value('curr_inst')); ?>
+    <br /><br />
     <!-- input - Current major -->
+    <h5>Current Major:</h5>
+    <?php echo form_input($curr_maj, set_value('curr_maj')); ?>
 
 <?php echo form_fieldset_close(); ?>
 
