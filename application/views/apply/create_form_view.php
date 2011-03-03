@@ -10,7 +10,7 @@
 
 <?php echo form_open('apply/create_form'); ?>
 
-
+<?php echo form_hidden('id', $id); ?>
 
 <?php echo form_fieldset('General Adminssions Questions', $general_field); ?>
 

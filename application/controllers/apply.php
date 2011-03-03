@@ -48,6 +48,9 @@ class Apply extends CI_Controller {
         if($this->form_validation->run() == FALSE)
         {
 
+            $user = $this->ion_auth->get_user();
+            $data['id'] = $user->id;
+
             /**** Start General Fieldset ****/
 
             // Attributes for General Questions fieldset
