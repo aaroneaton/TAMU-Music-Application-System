@@ -263,3 +263,10 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+
+/* custom stuff */
+textarea.app-form-text{
+    width:390px;
+    height:100px;
+    padding:5px;
+}
