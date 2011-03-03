@@ -39,9 +39,9 @@
 
 <?php endif; ?>
 
-    <li><?php echo anchor('auth/change_password', 'Change Password'); ?></li>
-
 <?php if($this->ion_auth->logged_in()) : ?>
+
+    <li><?php echo anchor('auth/change_password', 'Change Password'); ?></li>
 
     <li><?php echo anchor('auth/logout', 'Logout'); ?></li>
 
