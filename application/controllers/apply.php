@@ -34,6 +34,11 @@ class Apply extends CI_Controller {
         $this->form_validation->set_rules('inst_areas[]', 'error', '');
         $this->form_validation->set_rules('ensembles[]', 'error', '');
         $this->form_validation->set_rules('perf_aud', 'error', '');
+        $this->form_validation->set_rules('music_background', 'Music Background', 'required|min_length[5]');
+        $this->form_validation->set_rules('music_interest', 'Music Interest', 'required|min_length[5]');
+        $this->form_validation->set_rules('music_goals', 'Music Goals', 'required|min_length[5]');
+        $this->form_validation->set_rules('awards_honors', 'Awards & Honors', '');
+        $this->form_validation->set_rules('correct_info', 'Correct Information', 'required');
         // The following rules may need to be moved to accommodate for
         // Freshman/Transfer status.
         //
@@ -244,6 +249,45 @@ class Apply extends CI_Controller {
             );
 
             /**** End Transfer Fieldset ****/
+
+            /**** Start Textarea responses ****/
+
+            // Attributes for music background
+            $data['music_background'] = array(
+                'name'  => 'music_background',
+                'id'    => 'music_background',
+                'class' => 'app-form-text',
+            );
+
+            // Attributes for music interest
+            $data['music_interest'] = array(
+                'name'  => 'music_interest',
+                'id'    => 'music_interest',
+                'class' => 'app-form-text',
+            );
+
+            // Attributes for music goals
+            $data['music_goals'] = array(
+                'name'  => 'music_goals',
+                'id'    => 'music_goals',
+                'class' => 'app-form-text',
+            );
+
+            // Attributes for awards and honors
+            $data['awards_honors'] = array(
+                'name'  => 'awards_honors',
+                'id'    => 'awards_honors',
+                'class' => 'app-form-text',
+            );
+
+            /**** End Textarea responses ****/
+
+            // Attributes for correct info checkbox
+            $data['correct_info'] = array(
+                'name'  => 'correct_info',
+                'id'    => 'correct_info',
+                'value' => 'correct_info'
+            );
 
             $data['main_content'] = 'apply/create_form_view';
             $this->load->view('includes/template', $data);

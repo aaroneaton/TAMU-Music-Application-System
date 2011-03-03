@@ -103,7 +103,42 @@
 
 <?php echo form_fieldset_close(); ?>
 
+    <!-- textarea - Musical background -->
+    <div id="music_background" class="span-10 last">
+        <h5>Give a brief description of your musical background:</h5>
+        <span class="quiet">private study; membership in performing organizations;
+            solo performance activities; compositions performed; courses of study in
+            music theory, history, cultural studies, etc.
+        </span>
+        <?php echo form_textarea($music_background, set_value('music_background')); ?>
+        <br /><br />
+    </div><!-- End div id music_background -->
 
+    <!-- textarea - Music major interest -->
+    <div id="music_interest" class="span-10 last">
+        <h5>Indicate why you are interested in becoming<br />
+        a music major at Texas A&M University:</h5>
+        <?php echo form_textarea($music_interest, set_value('music_interest')); ?>
+        <br /><br />
+    </div><!-- End div id music_interest -->
 
+    <!-- textarea - Goals in music -->
+    <div id="music_goals" class="span-10 last">
+        <h5>Briefly discuss your educational and career goals in music:</h5>
+        <?php echo form_textarea($music_goals, set_value('music_goals')); ?>
+        <br /><br />
+    </div><!-- End div id music_goals -->
+
+    <!-- textarea - Awards and honors -->
+    <div id="awards_honors" class="span-10 last">
+        <h5>List the musical awards and other special honors you have received:</h5>
+        <?php echo form_textarea($awards_honors, set_value('awards_honors')); ?>
+        <br /><br />
+    </div><!-- End div id awards_honors -->
+
+    <div id="correct_info" class="span-18 last">
+        <h5><?php echo form_checkbox($correct_info, set_value('correct_info', 'correct_info')); ?>
+         I hereby attest that the information given is correct to the best of my knowledge.</h5>
+    </div>
 
 <div class="span-10"><?php echo form_submit('submit_app', 'Submit!'); ?></div>
