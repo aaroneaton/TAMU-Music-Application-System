@@ -36,6 +36,15 @@ class Apply extends CI_Controller {
 
         if($this->form_validation->run() == FALSE)
         {
+
+            /**** Start General Fieldset ****/
+
+            // Attributes for General Questions fieldset
+            $data['general_field'] = array(
+                'id'    => 'general_field',
+                'class' => 'span-10 last'
+            );
+
             // Attributes for Current GPA
             $data['curr_gpa'] = array(
                 'name'      => 'curr_gpa',
@@ -43,11 +52,6 @@ class Apply extends CI_Controller {
                 'maxlength' => '3'
             );
 
-            // Attributes for General Questions fieldset
-            $data['general_field'] = array(
-                'id'    => 'general_field',
-                'class' => 'span-10 last'
-            );
 
             // Attributes for Interested Areas
             $data['inst_areas'] = array(
@@ -97,6 +101,68 @@ class Apply extends CI_Controller {
                 'may'   => 'May 2011',
                 'aug'   => 'August 2011'
             );
+
+            /**** End General Fieldset ****/
+            
+            /**** Start Freshmen Fieldset ****/
+            // Attributes for Freshmen Fieldset
+            $data['freshmen_field'] = array(
+                'id'    => 'freshman_field',
+                'class' => 'span-10 last'
+            );
+            
+            // Attributes for High School
+            $data['high_school'] = array(
+                'name'  => 'high_school',
+                'id'    => 'high_school'
+            );
+
+            // Attributes for Graduation Month
+            $data['grad_month'] = array(
+                '--'    => '--',
+                '01'    => '01',
+                '02'    => '02',
+                '03'    => '03',
+                '04'    => '04',
+                '05'    => '05',
+                '06'    => '06',
+                '07'    => '07',
+                '08'    => '08',
+                '09'    => '09',
+                '10'    => '10',
+                '11'    => '11',
+                '12'    => '12',
+            );
+
+            // Attributes for Graduation Year
+            $data['grad_year'] = array(
+                '----'  => '----',
+                '2011'  => '2011',
+                '2012'  => '2012',
+                '2013'  => '2013'
+            );
+
+            // Attributes for TAMU App
+            $data['app_tamu'] = array(
+                '--'    => '--',
+                'yes'   => 'Yes',
+                'no'    => 'No'
+            );
+
+            // Attributes for Test Scores
+            $data['sat_act'] = array(
+                'name'  => 'sat_act',
+                'id'    => 'sat_act'
+            );
+
+
+            /**** End Freshment Fieldset ****/
+
+            /**** Start Transfer Fieldset ****/
+
+
+
+            /**** End Transfer Fieldset ****/
 
             $data['main_content'] = 'apply/create_form_view';
             $this->load->view('includes/template', $data);

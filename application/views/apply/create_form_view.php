@@ -41,12 +41,37 @@
 
 <?php echo form_fieldset_close(); ?>
 
-<?php echo form_fieldset('Incoming Freshmen Only', $attributes); ?>
+<?php echo form_fieldset('Incoming Freshmen Only', $freshmen_field); ?>
 
+    <!-- input - Current High School -->
+    <h5>High School:</h5>
+    <?php echo form_input($high_school, set_value('high_school')); ?>
+    <br /><br />
 
+    <!-- drop down(2) - Graduation Date -->
+    <h5>When will you graduate?</h5>
+    <?php echo form_dropdown('grad_month', $grad_month, $this->input->post('grad_month')); ?> /
+    <?php echo form_dropdown('grad_year', $grad_year, $this->input->post('grad_year')); ?>
+    <br /><br />
+
+    <!-- drop down - Applied to TAMU -->
+    <h5>Have you applied to TAMU?</h5>
+    <?php echo form_dropdown('app_tamu', $app_tamu, $this->input->post('app_tamu')); ?>
+    <br /><br />
+
+    <!-- input - Test Scores -->
+    <h5>ACT or SAT scores:</h5>
+    <?php echo form_input($sat_act, set_value('sat_act')); ?>
 
 <?php echo form_fieldset_close(); ?>
 
+<?php echo form_fieldset('Transfer Students Only'); ?>
+
+    <!-- input - Current institution -->
+
+    <!-- input - Current major -->
+
+<?php echo form_fieldset_close(); ?>
 
 
 
