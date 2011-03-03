@@ -32,7 +32,13 @@ class Apply extends CI_Controller {
     {
         $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
         $this->form_validation->set_rules('inst_areas[]', 'error', '');
+        $this->form_validation->set_rules('ensembles[]', 'error', '');
         $this->form_validation->set_rules('perf_aud', 'error', '');
+        // The following rules may need to be moved to accommodate for
+        // Freshman/Transfer status.
+        //
+        // $this->form_validation->set_rules('grad_month', 'Graduation Month', 'required');
+        // $this->form_validation->set_rules('app_tamu', 'TAMU Application', 'required');
 
         if($this->form_validation->run() == FALSE)
         {
@@ -87,6 +93,65 @@ class Apply extends CI_Controller {
                 ),
             );
 
+            // Attributes for Ensembles
+            $data['ensembles'] = array(
+                'brazos_chorale'   => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'brazos_chorale'
+                ),
+                'cent_singers'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'cent_singers'
+                ),
+                'singing_cadets'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'singing_cadets'
+                ),
+                'womens_chorus'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'womens_chorus'
+                ),
+                'bvso'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'bvso'
+                ),
+                'aggie_band'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'aggie_band'
+                ),
+                'concert_band'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'concert_band'
+                ),
+                'symph_band'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'symph_band'
+                ),
+                'wind_symph'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'wind_symph'
+                ),
+                'jazz_band'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'jazz_band'
+                ),
+                'small_ens'      => array(
+                        'name'      => 'ensembles[]',
+                        'id'        => 'ensembles',
+                        'value'     => 'small_ens'
+                ),
+            );
+
             // Attributes for Intended Minor
             $data['int_minor'] = array(
                 'name'  => 'int_minor',
@@ -119,7 +184,7 @@ class Apply extends CI_Controller {
 
             // Attributes for Graduation Month
             $data['grad_month'] = array(
-                '--'    => '--',
+                ''    => '',
                 '01'    => '01',
                 '02'    => '02',
                 '03'    => '03',
@@ -136,7 +201,7 @@ class Apply extends CI_Controller {
 
             // Attributes for Graduation Year
             $data['grad_year'] = array(
-                '----'  => '----',
+                ''  => '',
                 '2011'  => '2011',
                 '2012'  => '2012',
                 '2013'  => '2013'
@@ -144,7 +209,7 @@ class Apply extends CI_Controller {
 
             // Attributes for TAMU App
             $data['app_tamu'] = array(
-                '--'    => '--',
+                ''    => '',
                 'yes'   => 'Yes',
                 'no'    => 'No'
             );
