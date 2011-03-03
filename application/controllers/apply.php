@@ -31,6 +31,8 @@ class Apply extends CI_Controller {
     function create_form()
     {
         $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
+        $this->form_validation->set_rules('inst_areas[]', 'error', '');
+        $this->form_validation->set_rules('perf_aud', 'error', '');
 
         if($this->form_validation->run() == FALSE)
         {
@@ -38,13 +40,12 @@ class Apply extends CI_Controller {
             $data['curr_gpa'] = array(
                 'name'      => 'curr_gpa',
                 'id'        => 'curr_gpa',
-                'value'     => set_value('curr_gpa'),
                 'maxlength' => '3'
             );
 
-            // Attributes for Interested Areas fieldset
-            $data['inst_area_field'] = array(
-                'id'    => 'inst_area_field',
+            // Attributes for General Questions fieldset
+            $data['general_field'] = array(
+                'id'    => 'general_field',
                 'class' => 'span-10 last'
             );
 
@@ -80,6 +81,21 @@ class Apply extends CI_Controller {
                         'id'        => 'inst_areas',
                         'value'     => 'musc_perf'
                 ),
+            );
+
+            // Attributes for Intended Minor
+            $data['int_minor'] = array(
+                'name'  => 'int_minor',
+                'id'    => 'int_minor',
+            );
+
+            // Attributes for Audition
+            // These are just test items. Will reference a database in future
+            // @todo - Pull options from database
+            $data['perf_aud'] = array(
+                'mar'   => 'March 2011',
+                'may'   => 'May 2011',
+                'aug'   => 'August 2011'
             );
 
             $data['main_content'] = 'apply/create_form_view';
