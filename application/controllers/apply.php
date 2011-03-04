@@ -3,6 +3,13 @@
 
 class Apply extends CI_Controller {
 
+    function  __construct() {
+        parent::__construct();
+        
+        // Load the App_model
+            $this->load->model('App_model');
+    }
+
     function index()
     {
         $data['main_content'] = 'apply_view';
@@ -297,9 +304,6 @@ class Apply extends CI_Controller {
         }
         else
         {
-            // Load the App_model
-            $this->load->model('App_model');
-
             // Get the array of info submitted from the form and
             // serialize it.
             $post = array(
@@ -309,8 +313,7 @@ class Apply extends CI_Controller {
             
             // Now send the serialized array to the model to create the record
             $this->App_model->create($post);
-
-
+            // @todo - Create 'success' or 'fail' messages and pass to view
 
             $data['main_content'] = 'apply/create_success_view';
             $this->load->view('includes/template', $data);
@@ -321,9 +324,39 @@ class Apply extends CI_Controller {
      * The view_app() method retrieves the application from the database
      * and presents it to the user.
      */
-    function view_app()
+    function view()
     {
+        // $this->output->enable_profiler(TRUE);
 
+        $user = $this->ion_auth->get_user();
+        $id = $user->id;
+
+        // $this->App_model->get_app($id);
+        
+        $data['app'] = $this->App_model->get_user_app($id);
+
+        if(!isset ($data['app']))
+        {
+            $data['err_msg'] = 'There was an error in retrieving your application';
+        }
+        
+        // Attributes for Interested Areas Fieldset
+        $data['inst_areas_field'] = array(
+            'id'    => 'inst_areas',
+            'name'  => 'inst_areas',
+            'class' => 'span-5'
+        );
+        
+        // Attributes for Ensembles Fieldset
+        $data['ensembles_field'] = array(
+            'id'    => 'ensembles',
+            'name'  => 'ensembles',
+            'class' => 'span-5'
+        );
+
+
+        $data['main_content'] = 'apply/view_view';
+        $this->load->view('includes/template', $data);
     }
 
 }
