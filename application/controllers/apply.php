@@ -326,7 +326,37 @@ class Apply extends CI_Controller {
      */
     function view()
     {
+        // $this->output->enable_profiler(TRUE);
 
+        $user = $this->ion_auth->get_user();
+        $id = $user->id;
+
+        // $this->App_model->get_app($id);
+        
+        $data['app'] = $this->App_model->get_user_app($id);
+
+        if(!isset ($data['app']))
+        {
+            $data['err_msg'] = 'There was an error in retrieving your application';
+        }
+        
+        // Attributes for Interested Areas Fieldset
+        $data['inst_areas_field'] = array(
+            'id'    => 'inst_areas',
+            'name'  => 'inst_areas',
+            'class' => 'span-5'
+        );
+        
+        // Attributes for Ensembles Fieldset
+        $data['ensembles_field'] = array(
+            'id'    => 'ensembles',
+            'name'  => 'ensembles',
+            'class' => 'span-5'
+        );
+
+
+        $data['main_content'] = 'apply/view_view';
+        $this->load->view('includes/template', $data);
     }
 
 }
