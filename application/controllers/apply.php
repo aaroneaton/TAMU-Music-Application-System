@@ -297,9 +297,33 @@ class Apply extends CI_Controller {
         }
         else
         {
+            // Load the App_model
+            $this->load->model('App_model');
+
+            // Get the array of info submitted from the form and
+            // serialize it.
+            $post = array(
+                'user_id'    => $this->input->post('id'),
+                'serial_app'    => serialize($_POST)
+            );
+            
+            // Now send the serialized array to the model to create the record
+            $this->App_model->create($post);
+
+
+
             $data['main_content'] = 'apply/create_success_view';
             $this->load->view('includes/template', $data);
         }
+    }
+
+    /*
+     * The view_app() method retrieves the application from the database
+     * and presents it to the user.
+     */
+    function view_app()
+    {
+
     }
 
 }
