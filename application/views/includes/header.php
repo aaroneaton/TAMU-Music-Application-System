@@ -12,7 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-        <div class="container showgrid">
+        <div class="container">
         <div id="header" class="span-24 last">
             <h1>Header</h1>
         </div>

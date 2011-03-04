@@ -23,3 +23,11 @@
     <?php endforeach; ?>
     </ul>
 <?php echo form_fieldset_close(); ?>
+
+<ul>
+<?php foreach ($app as $value) : ?>
+
+    <li><?php echo $value; ?></li>
+
+<?php            endforeach; ?>
+</ul>
