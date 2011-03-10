@@ -1,10 +1,8 @@
-#############################################
-##### Installing the app on your system #####
-#############################################
+TAMU Music Application System
+-----------------------------
 
-1. Copy files within the 'install' directory to their respective directory
-    ( ex. install/application/config/database.php goes to
-          /application/config/database.php )
+
+1. Copy files within the 'install' directory to their respective directory ( ex. install/application/config/database.php goes to /application/config/database.php )
 
 2. Input configuration settings in those config files.
 
