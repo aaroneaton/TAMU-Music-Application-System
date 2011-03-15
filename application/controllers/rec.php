@@ -29,6 +29,12 @@ class Rec extends CI_Controller
       $user = $this->ion_auth->get_user();
       $data['id'] = $user->id;
 
+      // Begin Form Attributes
+      $data['app_name'] = array(
+        'name' => 'app_name',
+        'id' => 'app_name',
+        );
+
       // Start Radio Button Array
       // Attributes for musical talent radio buttons
       $data['musc_tal'] = array(

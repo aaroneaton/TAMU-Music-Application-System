@@ -11,6 +11,9 @@
 
 <?php echo form_hidden('id', $id); ?>
 
+<h5>Name of Applicant</h5>
+<?php echo form_input($app_name, set_value('app_name')); ?>
+
 <h5>Please rate the applicant on the following criteria</h5>
 
 <table>
