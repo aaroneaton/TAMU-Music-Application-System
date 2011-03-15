@@ -29,6 +29,7 @@ class Rec extends CI_Controller
       $user = $this->ion_auth->get_user();
       $data['id'] = $user->id;
 
+      // Start Radio Button Array
       // Attributes for musical talent radio buttons
       $data['musc_tal'] = array(
           'outstanding' => array(
@@ -107,6 +108,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for muscial fundamentals radio buttons
       $data['musc_fund'] = array(
           'outstanding' => array(
             'name' => 'musc_fund[]',
@@ -145,6 +147,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for Muscial Career radio buttons
       $data['musc_career'] = array(
           'outstanding' => array(
             'name' => 'musc_career[]',
@@ -183,6 +186,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for Success at TAMU radio buttons
       $data['success_tamu'] = array(
           'outstanding' => array(
             'name' => 'success_tamu[]',
@@ -221,6 +225,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for Personality radio buttons
       $data['personality'] = array(
           'outstanding' => array(
             'name' => 'personality[]',
@@ -259,6 +264,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for Reliability radio buttons
       $data['reliability'] = array(
           'outstanding' => array(
             'name' => 'reliability[]',
@@ -297,6 +303,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attrubutes for Motivation radio buttons
       $data['motivation'] = array(
           'outstanding' => array(
             'name' => 'motivation[]',
@@ -335,6 +342,7 @@ class Rec extends CI_Controller
           ),
         );
 
+      // Attributes for Overall rating radio buttons
       $data['overall_rating'] = array(
           'outstanding' => array(
             'name' => 'overall_rating[]',
@@ -372,6 +380,19 @@ class Rec extends CI_Controller
             'value' => 'not_obs',
           ),
         );
+      // End Radio Button Array
+      
+      // Start Textarea Attributes
+      $data['known_app'] = array(
+        'name' => 'known_app',
+        'id' => 'known_app',
+        );
+
+      $data['comments'] = array(
+        'name' => 'comments',
+        'id' => 'comments',
+        );
+
       $data['main_content'] = 'rec/rec_start';
       $this->load->view('includes/template', $data);
     }
