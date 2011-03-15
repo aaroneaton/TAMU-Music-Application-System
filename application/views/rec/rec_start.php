@@ -107,3 +107,8 @@
 </table>
 <h5>How long and in what capacity have you known the applicant?</h5>
 <?php echo form_textarea($known_app, set_value('known_app')); ?>
+
+<h5>Please feel free to provide additional comments.</h5>
+<?php echo form_textarea($comments, set_value('comments')); ?>
+
+<?php echo form_submit('submit_rec', 'Submit!'); ?>
