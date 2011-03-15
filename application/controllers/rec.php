@@ -12,16 +12,10 @@ class Rec extends CI_Controller
   
   function new_rec()
   {
-    $this->form_validation->set_rules('field name','human name', 'rules');
-    if($this->form_validation_run() == FALSE)
-    {
-      $data['main_content'] = 'rec/rec_start';
-      $this->load->view('includes/template', $data);
-    }
-    else
-    {
-      $data['main_content'] = 'rec/rec_success';
-      $this->load->view('includes/template', $data);
-    }
+    $user = $this->ion_auth->get_user();
+    $data['id'] = $user->id;
+
+    $data['main_content'] = 'rec/rec_start';
+    $this->load->view('includes/template', $data);
   }
 }
