@@ -8,10 +8,15 @@ class Rec extends CI_Controller
   function __construct()
   {
     parent::__construct();
+
+    // Load the Rec_model
+    $this->load->model('Rec_model');
   }
   
   function new_rec()
   {
+    $this->form_validation->set_rules('app_first','Applicant First Name', 'required|min_length[3]');
+    $this->form_validation->set_rules('app_last','Applicant Last Name', 'required|min_length[3]');
     $this->form_validation->set_rules('musc_tal[]','Musical Talent', 'required');
     $this->form_validation->set_rules('create_skill[]','Interpretive, creative skill', 'required');
     $this->form_validation->set_rules('musc_fund[]','Music Fundamentals', 'required');
@@ -30,9 +35,16 @@ class Rec extends CI_Controller
       $data['id'] = $user->id;
 
       // Begin Form Attributes
-      $data['app_name'] = array(
-        'name' => 'app_name',
-        'id' => 'app_name',
+      $data['app_first'] = array(
+        'name' => 'app_first',
+        'id' => 'app_first',
+        'value' => 'First Name',
+        );
+
+      $data['app_last'] = array(
+        'name' => 'app_last',
+        'id' => 'app_last',
+        'value' => 'Last Name',
         );
 
       // Start Radio Button Array
@@ -404,8 +416,19 @@ class Rec extends CI_Controller
     }
     else
     {
-      // Code for db insertion here
-      
+      // Get the array of info submitted from the form and
+      // serialize it.
+      $post = array(
+        'user_id' => $this->input->post('id'),
+        'app_first' => $this->input->post('app_first'),
+        'app_last' => $this->input->post('app_last'),
+        'serial_rec' => serialize($_POST),
+      );
+
+      //Now send the serialized array to the model to create the record
+      $this->Rec_model->create($post);
+      // @todo - Create 'success' or 'fail' messages and pass to view
+
       $data['main_content'] = 'rec/submit_view';
       $this->load->view('includes/template', $data);
     }
