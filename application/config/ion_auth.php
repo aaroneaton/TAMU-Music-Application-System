@@ -37,7 +37,7 @@
 	/**
 	 * Default group, use name
 	 */
-	$config['default_group']       = 'applicants';
+	$config['default_group']       = 'recommenders';
 	
 	/**
 	 * Default administrators group, use name
