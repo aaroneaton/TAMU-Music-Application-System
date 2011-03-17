@@ -14,9 +14,12 @@
       <?php echo form_input($last_name);?>
       </p>
       
-      <p>Company Name:<br />
+      <p>Company/Institutional Affiliation:<br />
       <?php echo form_input($company);?>
       </p>
+
+      <p>Position/Title:<br />
+      <?php echo form_input($position); ?>
       
       <p>Email:<br />
       <?php echo form_input($email);?>

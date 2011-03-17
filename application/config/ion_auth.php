@@ -56,7 +56,7 @@
          *
          * @todo - decide on columns
 	 **/
-	$config['columns']             = array('first_name', 'last_name', 'company', 'phone');
+	$config['columns']             = array('first_name', 'last_name', 'company', 'position', 'phone');
 	
 	/**
 	 * A database column which is used to

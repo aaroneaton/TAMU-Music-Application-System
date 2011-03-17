@@ -287,6 +287,7 @@ class Auth extends Controller {
 		$this->form_validation->set_rules('phone2', 'Second Part of Phone', 'required|xss_clean|min_length[3]|max_length[3]');
 		$this->form_validation->set_rules('phone3', 'Third Part of Phone', 'required|xss_clean|min_length[4]|max_length[4]');
 		$this->form_validation->set_rules('company', 'Company Name', 'required|xss_clean');
+    $this->form_validation->set_rules('position','Position/Title', 'required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
 
@@ -299,6 +300,7 @@ class Auth extends Controller {
 			$additional_data = array('first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'company' => $this->input->post('company'),
+        'position' => $this->input->post('position'),
 				'phone' => $this->input->post('phone1') . '-' . $this->input->post('phone2') . '-' . $this->input->post('phone3'),
 			);
 		}
@@ -332,6 +334,12 @@ class Auth extends Controller {
 				'id' => 'company',
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('company'),
+			);
+
+			$this->data['position'] = array('name' => 'position',
+				'id' => 'position',
+				'type' => 'text',
+				'value' => $this->form_validation->set_value('position'),
 			);
 			$this->data['phone1'] = array('name' => 'phone1',
 				'id' => 'phone1',
