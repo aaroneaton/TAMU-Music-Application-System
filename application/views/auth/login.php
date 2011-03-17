@@ -29,4 +29,5 @@
       
     <?php echo form_close();?>
 
+  <p><?php echo anchor('auth/create_user', 'Create an account', ''); ?>
 </div>
