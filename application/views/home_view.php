@@ -4,6 +4,7 @@
 <p>You are not logged in!</p>
 <p>Please <?php echo anchor('auth/login', 'login'); ?>.</p>
 
+<p><?php echo anchor('auth/create_user', 'Create an account', ''); ?>
 <?php // If user is logged in and an administrator, show Admin stuff ?>
 <?php elseif($this->ion_auth->is_admin()) : ?>
 

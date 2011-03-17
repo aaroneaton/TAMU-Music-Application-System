@@ -37,7 +37,7 @@
 	/**
 	 * Default group, use name
 	 */
-	$config['default_group']       = 'applicants';
+	$config['default_group']       = 'recommenders';
 	
 	/**
 	 * Default administrators group, use name
@@ -56,7 +56,7 @@
          *
          * @todo - decide on columns
 	 **/
-	$config['columns']             = array('first_name', 'last_name', 'company', 'phone');
+	$config['columns']             = array('first_name', 'last_name', 'company', 'position', 'phone');
 	
 	/**
 	 * A database column which is used to
