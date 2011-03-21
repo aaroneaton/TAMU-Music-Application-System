@@ -274,10 +274,10 @@ class Auth extends Controller {
 	{
 		$this->data['title'] = "Create User";
 
-		 if (!$this->ion_auth->logged_in())
-		 {
-		 redirect('auth', 'refresh');
-		 }
+		 //if (!$this->ion_auth->logged_in())
+		 //{
+		 //redirect('auth', 'refresh');
+		 //}
 
 		//validate form input
 		$this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
