@@ -395,4 +395,95 @@ class Auth extends Controller {
 		}
 	}
 
+	function update_user()
+	{
+		$this->data['title'] = "Update User";
+
+		 //if (!$this->ion_auth->logged_in())
+		 //{
+		 //redirect('auth', 'refresh');
+		 //}
+
+		//validate form input
+		$this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+		$this->form_validation->set_rules('phone1', 'First Part of Phone', 'required|xss_clean|min_length[3]|max_length[3]');
+		$this->form_validation->set_rules('phone2', 'Second Part of Phone', 'required|xss_clean|min_length[3]|max_length[3]');
+		$this->form_validation->set_rules('phone3', 'Third Part of Phone', 'required|xss_clean|min_length[4]|max_length[4]');
+		$this->form_validation->set_rules('company', 'Company Name', 'required|xss_clean');
+    $this->form_validation->set_rules('position','Position/Title', 'required|xss_clean');
+
+		if ($this->form_validation->run())
+		{
+      // Get the user's ID
+      $id = $this->ion_auth->get_user('id');
+
+      // Get the data from the update form
+      $data = $this->input->post('position');
+
+      // And update...
+      $this->ion_auth->update_user($id, $data);
+			$this->session->set_flashdata('message', "User Created");
+			//redirect("auth", 'refresh');
+		}
+		else
+		{ //display the create user form
+			//set the flash data error message if there is one
+			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+      // Pull existing user info from database
+      $user = $this->ion_auth->get_user_array();
+
+      // Prepare the phone number for separate fields
+      $phone1 = substr($user['phone'], 0, 3);
+      $phone2 = substr($user['phone'], 4, 3);
+      $phone3 = substr($user['phone'], 8, 4);
+
+			$this->data['first_name'] = array('name' => 'first_name',
+				'id' => 'first_name',
+				'type' => 'text',
+				'value' => $user['first_name'],
+			);
+			$this->data['last_name'] = array('name' => 'last_name',
+				'id' => 'last_name',
+				'type' => 'text',
+				'value' => $user['last_name'],
+			);
+			$this->data['email'] = array('name' => 'email',
+				'id' => 'email',
+				'type' => 'text',
+				'value' => $user['email'],
+			);
+			$this->data['company'] = array('name' => 'company',
+				'id' => 'company',
+				'type' => 'text',
+				'value' => $user['company'],
+			);
+
+			$this->data['position'] = array('name' => 'position',
+				'id' => 'position',
+				'type' => 'text',
+				'value' => $user['position'],
+			);
+			$this->data['phone1'] = array('name' => 'phone1',
+				'id' => 'phone1',
+				'type' => 'text',
+				'value' => $phone1,
+			);
+			$this->data['phone2'] = array('name' => 'phone2',
+				'id' => 'phone2',
+				'type' => 'text',
+				'value' => $phone2,
+			);
+			$this->data['phone3'] = array('name' => 'phone3',
+				'id' => 'phone3',
+				'type' => 'text',
+				'value' => $phone3,
+			);
+			$this->data['main_content'] = 'auth/update_user_view';
+                        $this->load->view('includes/template', $this->data);
+		}
+	}
+
 }
