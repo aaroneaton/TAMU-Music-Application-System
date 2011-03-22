@@ -420,11 +420,12 @@ class Auth extends Controller {
       $id = $this->ion_auth->get_user('id');
 
       // Get the data from the update form
-      $data = $this->input->post('position');
+      $data = $this->input->post();
+      $this->output->enable_profiler(TRUE);
 
       // And update...
       $this->ion_auth->update_user($id, $data);
-			$this->session->set_flashdata('message', "User Created");
+			$this->load->view('auth/update_success_view', $data);
 			//redirect("auth", 'refresh');
 		}
 		else
