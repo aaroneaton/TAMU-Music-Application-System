@@ -126,7 +126,7 @@ class Rec extends CI_Controller
           ),
         );
 
-      // Attributes for muscial fundamentals radio buttons
+      // Attributes for musical fundamentals radio buttons
       $data['musc_fund'] = array(
           'outstanding' => array(
             'name' => 'musc_fund[]',
@@ -165,7 +165,7 @@ class Rec extends CI_Controller
           ),
         );
 
-      // Attributes for Muscial Career radio buttons
+      // Attributes for Musical Career radio buttons
       $data['musc_career'] = array(
           'outstanding' => array(
             'name' => 'musc_career[]',
@@ -433,4 +433,17 @@ class Rec extends CI_Controller
       $this->load->view('includes/template', $data);
     }
   }
+  function rec_view()
+    {
+      $user = $this->ion_auth->get_user();
+      $id= $user->id;
+      //$id = $this->ion_auth->get_user_array('id');
+      $data['info'] = $this->Rec_model->get_user_rec($id);
+      //$data['fool'] = 'fool';
+      //$data['main_content'] = 'rec/rec_view';
+      //$this->load->view('includes/template', $data);
+      $this->load->view('rec/rec_view', $data);
+      $this->output->enable_profiler(true);
+    }
 }
+
