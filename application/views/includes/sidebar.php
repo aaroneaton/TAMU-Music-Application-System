@@ -1,4 +1,5 @@
-<h2>Sidebar</h2>
+<div id="sidebar">
+<h2>Menu</h2>
 
 <ul id="links">
 
@@ -48,3 +49,4 @@
 <?php endif; ?>
 
 </ul>
+</div>

@@ -1,3 +1,5 @@
+<head> <link rel="stylesheet" href="<?php echo base_url(); ?>css/blueprint/screen.css" type="text/css" media="screen, projection" /></head>
+
 <div class='mainInfo'>
 
 	<div class="pageTitle">Login</div>
