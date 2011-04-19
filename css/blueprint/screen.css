@@ -26,8 +26,8 @@ a img {border:none;}
 
 /* typography.css */
 html {font-size:100.01%;}
-body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
+body {font-size:75%;color:#fff;background:#F1E4B1;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#fff;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
@@ -40,8 +40,8 @@ p {margin:0 0 1.5em;}
 p .left {margin:1.5em 1.5em 1.5em 0;padding:0;}
 .right {float:right !important;}
 p .right {margin:1.5em 0 1.5em 1.5em;padding:0;}
-a:focus, a:hover {color:#09f;}
-a {color:#06c;text-decoration:underline;}
+a:focus, a:hover {color:#332c2c;}
+a {color:#fff;text-decoration:underline;}
 blockquote {margin:1.5em;color:#666;font-style:italic;}
 strong, dfn {font-weight:bold;}
 em, dfn {font-style:italic;}
@@ -104,7 +104,7 @@ form.inline p {margin-bottom:0;}
 .info a {color:#205791;}
 
 /* grid.css */
-.container {width:950px;margin:0 auto;}
+.container {width:100%;margin:0 auto;}
 .showgrid {background:url(src/grid.png);}
 .column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:left;margin-right:10px;}
 .last {margin-right:0;}
@@ -131,7 +131,7 @@ form.inline p {margin-bottom:0;}
 .span-21 {width:830px;}
 .span-22 {width:870px;}
 .span-23 {width:910px;}
-.span-24 {width:950px;margin-right:0;}
+.span-24 {width:100%;margin-right:0;}
 input.span-1, textarea.span-1, input.span-2, textarea.span-2, input.span-3, textarea.span-3, input.span-4, textarea.span-4, input.span-5, textarea.span-5, input.span-6, textarea.span-6, input.span-7, textarea.span-7, input.span-8, textarea.span-8, input.span-9, textarea.span-9, input.span-10, textarea.span-10, input.span-11, textarea.span-11, input.span-12, textarea.span-12, input.span-13, textarea.span-13, input.span-14, textarea.span-14, input.span-15, textarea.span-15, input.span-16, textarea.span-16, input.span-17, textarea.span-17, input.span-18, textarea.span-18, input.span-19, textarea.span-19, input.span-20, textarea.span-20, input.span-21, textarea.span-21, input.span-22, textarea.span-22, input.span-23, textarea.span-23, input.span-24, textarea.span-24 {border-left-width:1px;border-right-width:1px;padding-left:5px;padding-right:5px;}
 input.span-1, textarea.span-1 {width:18px;}
 input.span-2, textarea.span-2 {width:58px;}
@@ -270,3 +270,8 @@ textarea.app-form-text{
     height:100px;
     padding:5px;
 }
+
+div#header {background-color:500000; width:100%;}
+div#footer, div#footer h3 {width:100%; vertical-align:bottom; color:#500000;}
+
+div#sidebar {background-color:500000;}

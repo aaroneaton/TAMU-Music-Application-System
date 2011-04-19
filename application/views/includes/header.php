@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Untitled</title>
+        <title>TAMU Music Recommendation System</title>
         
         
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/blueprint/screen.css" type="text/css" media="screen, projection" />
@@ -14,5 +14,6 @@
     <body>
         <div class="container">
         <div id="header" class="span-24 last">
-            <h1>Header</h1>
+            <img src="<?php echo base_url(); ?>images/primaryMark.jpg"><h1>Music Recommendation System</h1>
+        </div>
         </div>
