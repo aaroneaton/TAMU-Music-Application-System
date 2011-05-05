@@ -460,7 +460,7 @@ class Rec extends CI_Controller
 
     $data['rec'] = $this->Rec_model->get_user_rec_single($rec_id);
 
-    if(!isset ($data['rec'])
+    if(!isset ($data['rec']))
     {
       $data['err_msg'] = 'There was an error in retrieving your recommendation.';
     }
