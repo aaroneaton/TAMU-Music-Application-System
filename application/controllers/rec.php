@@ -439,7 +439,7 @@ class Rec extends CI_Controller
     $user = $this->ion_auth->get_user();
     $id = $user->id;
 
-    $data['recs'] = $this->Rec_model->get_user_rec_list($id);
+    $data['recs'] = $this->Rec_model->get_user_rec($id);
 
     if(!isset ($data['recs']))
     {

@@ -16,7 +16,7 @@ class Rec_model extends CI_Model
     return;
   }
 
-  function get_user_rec_list($id)
+  function get_user_rec($id)
   {
     $q = $this->db->get_where('recommendations', array('user_id' => $id));
 
