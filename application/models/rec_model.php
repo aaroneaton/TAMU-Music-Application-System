@@ -27,4 +27,21 @@ class Rec_model extends CI_Model
       return $recs;
     }
   }
+
+  function get_user_rec_single($rec_id)
+  {
+    $q = $this->db->get_where('recommendations', array('id' => $rec_id));
+
+    if ($q->num_rows() >0)
+    {
+      $serialized =$q->row_array();
+      $rec = unserialize($serialized['serial_rec']);
+
+      return $rec;
+    }
+    else
+    {
+      return FALSE;
+    }
+  }
 }
