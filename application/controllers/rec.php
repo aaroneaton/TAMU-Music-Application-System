@@ -454,7 +454,7 @@ class Rec extends CI_Controller
   function show_rec()
   {
     $user =  $this->ion_auth->get_user();
-    $id = $user->id;
+    $data['id'] = $user->id;
 
     $rec_id = $this->uri->segment(3);
 
