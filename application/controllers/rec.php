@@ -433,4 +433,21 @@ class Rec extends CI_Controller
       $this->load->view('includes/template', $data);
     }
   }
+
+  public function list_rec()
+  {
+    $user = $this->ion_auth->get_user();
+    $id = $user->id;
+
+    $data['recs'] = $this->Rec_model->get_user_rec_list($id);
+
+    if(!isset ($data['recs']))
+    {
+      $data['err_msg'] = 'There was an error in retrieving your recommendations.';
+    }
+    
+    $data['main_content'] = 'rec/list_rec_view';
+    $this->load->view('includes/template', $data);
+
+  }
 }

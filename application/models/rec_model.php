@@ -15,4 +15,16 @@ class Rec_model extends CI_Model
     $this->db->insert('recommendations', $post);
     return;
   }
+
+  function get_user_rec_list($id)
+  {
+    $q = $this->db->get_where('recommendations', array('user_id' => $id));
+
+    if ($q->num_rows() > 0)
+    {
+      $recs = $q->result_array();
+
+      return $recs;
+    }
+  }
 }
