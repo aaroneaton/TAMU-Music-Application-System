@@ -17,20 +17,20 @@
     <li><?php echo anchor('apply/create_app', 'Start Application'); ?></li>
 
     <?php // @todo - Should only show if application exists ?>
-    <li><?php echo anchor('apply/view', 'View Application'); ?></li>
+    <li><?php echo anchor('apply/show_app', 'View Application'); ?></li>
 
     <?php // @todo - Should only show if application exists ?>
-    <li><?php echo anchor('apply/edit', 'Edit Application'); ?></li>
+    <li><?php echo anchor('apply/edit_app', 'Edit Application'); ?></li>
 
     <?php // @todo - Should only show if application exists ?>
-    <li><?php echo anchor('apply/cancel', 'Cancel Application'); ?></li>
+    <li><?php echo anchor('apply/cancel_app', 'Cancel Application'); ?></li>
 
 <?php // If user is logged in and a recommender, show Recommendation stuff ?>
 <?php elseif($this->ion_auth->is_group('recommenders')) : ?>
 
     <li><?php echo anchor('rec/new_rec', 'Start New Recommendation'); ?> </li>
 
-    <li><?php echo anchor('rec/view', 'View Recommendations'); ?></li>
+    <li><?php echo anchor('rec/list_rec', 'View Recommendations'); ?></li>
 
 <?php // If user is logged in and a reviewer, show Review stuff ?>
 <?php elseif($this->ion_auth->is_group('reviewers')) : ?>
