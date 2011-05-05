@@ -13,5 +13,12 @@ if ($id != $rec['id'])
 }
 else
 {
-  echo $rec['app_first'];
+?>
+
+  <h2>Recommendation for: <?php echo $rec['app_first'] . ' ' . $rec['app_last']; ?></h2>
+  
+  <h3>Ratings Matrix:</h3>
+
+<?php  
+  print_r($rec);
 }
