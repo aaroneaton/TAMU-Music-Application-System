@@ -4,6 +4,14 @@
  */
 ?>
 
+<?php
+if(!isset ($app))
+{
+  echo $err_msg;
+}
+else {
+?>
+
 <?php echo form_fieldset('Interested Areas', $inst_areas_field); ?>
     <ul>
     <?php foreach($app['inst_areas'] as $area) : ?>
@@ -31,3 +39,6 @@
 
 <?php            endforeach; ?>
 </ul>
+<?php
+}
+?>

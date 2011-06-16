@@ -6,13 +6,18 @@ class Apply extends CI_Controller {
     function  __construct() {
         parent::__construct();
         
+        // Checks to see if the user is an applicant.
+        if (!$this->ion_auth->is_group('applicants')){
+          redirect('/auth/login');
+        }
+
         // Load the App_model
             $this->load->model('App_model');
     }
 
     function index()
     {
-        $data['main_content'] = 'apply_view';
+        $data['main_content'] = 'apply/apply_home_view';
         $this->load->view('includes/template', $data);
     }
 
@@ -29,13 +34,13 @@ class Apply extends CI_Controller {
     }
 
     /*
-     * The create_form() method in it's current state loads, validates, and
+     * The new_app() method in it's current state loads, validates, and
      * passes application info to the method.
      *
      * This method will later be expanded in to many methods to guide the
      * applicant step-by-step through the process.
      */
-    function create_form()
+    function new_app()
     {
         $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
         $this->form_validation->set_rules('inst_areas[]', 'error', '');
@@ -321,10 +326,10 @@ class Apply extends CI_Controller {
     }
 
     /*
-     * The view_app() method retrieves the application from the database
+     * The show_app() method retrieves the application from the database
      * and presents it to the user.
      */
-    function view()
+    function show_app()
     {
         // $this->output->enable_profiler(TRUE);
 

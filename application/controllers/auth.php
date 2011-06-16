@@ -86,7 +86,8 @@ class Auth extends Controller {
 			);
                         
 
-			$this->load->view('auth/login', $this->data);
+      $this->data['main_content'] = 'auth/login';
+			$this->load->view('includes/template', $this->data);
 		}
 	}
 

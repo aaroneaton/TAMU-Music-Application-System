@@ -11,8 +11,18 @@ class Rec extends CI_Controller
 
     // Load the Rec_model
     $this->load->model('Rec_model');
+
+    // Check to see if the user is part of the recommenders group. If not, redirect to login page.
+    if (!$this->ion_auth->is_group('recommenders')){
+      redirect('/auth/login');
+    }
   }
   
+  function index()
+  {
+    $data['main_content'] = 'rec/rec_home_view';
+    $this->load->view('includes/template', $data);
+  }
   function new_rec()
   {
     $this->form_validation->set_rules('app_first','Applicant First Name', 'required|min_length[3]');
