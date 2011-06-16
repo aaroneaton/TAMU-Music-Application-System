@@ -23,10 +23,10 @@ class Apply extends CI_Controller {
       $data['id'] = $user->id;
       $data['app'] = $this->App_model->check_user_app($data['id']);
       if (!isset ($data['app'])){
-        $data['message1'] = 'Please start an application';
+        $data['app_link'] = anchor('apply/new_app', 'Start Application');
       }
       else {
-        $data['message1'] = 'You have an application';
+        $data['app_link'] = anchor('apply/edit_app', 'Edit Application');
       }
       
       $data['main_content'] = 'apply/apply_home_view';
