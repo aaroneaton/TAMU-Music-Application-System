@@ -13,12 +13,26 @@ class Apply extends CI_Controller {
 
         // Load the App_model
             $this->load->model('App_model');
+
     }
 
     function index()
     {
-        $data['main_content'] = 'apply/apply_home_view';
-        $this->load->view('includes/template', $data);
+      // Check to see if an application exists for the student
+      $user = $this->ion_auth->get_user();
+      $data['id'] = $user->id;
+      $data['app'] = $this->App_model->check_user_app($data['id']);
+      if (!isset ($data['app'])){
+        $data['message1'] = 'Please start an application';
+      }
+      else {
+        $data['message1'] = 'You have an application';
+      }
+      
+      $data['main_content'] = 'apply/apply_home_view';
+      $this->load->view('includes/template', $data);
+
+      // $this->output->enable_profiler(TRUE);
     }
 
     /*

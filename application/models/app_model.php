@@ -28,4 +28,14 @@ class App_model extends CI_Model {
         }
     }
 
+    function check_user_app($id)
+    {
+      $q = $this->db->get_where('applications', array('user_id' => $id));
+
+      if ($q->num_rows() > 0)
+      {
+        return TRUE;
+      }
+    }
+
 }
