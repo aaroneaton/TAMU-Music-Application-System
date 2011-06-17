@@ -30,6 +30,7 @@ class Apply extends CI_Controller {
       }
       
       // Now for the recommendations. We will call count_user_recs in the model and return the result
+      $data['rec_request'] = anchor('apply/rec_request', 'Request Recommendations');
       $data['rec_count'] = $this->App_model->count_user_recs($data['id']);
 
       $data['main_content'] = 'apply/apply_home_view';
