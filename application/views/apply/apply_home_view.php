@@ -7,4 +7,6 @@ echo 'You are an applicant.';
 echo '<br />';
 echo $id;
 echo '<br />';
-echo $message1;
+echo $app_link;
+echo '<br />';
+echo $rec_count;

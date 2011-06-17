@@ -38,4 +38,15 @@ class App_model extends CI_Model {
       }
     }
 
+    // We need to count the number of recommendations the user has and display it.
+    function count_user_recs($id)
+    {
+      $this->db->where('app_id', $id);
+      $this->db->from('recommendations');
+      $q = $this->db->count_all_results();
+
+      return $q;
+
+    }
+
 }
