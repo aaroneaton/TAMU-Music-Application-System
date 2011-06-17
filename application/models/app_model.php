@@ -49,4 +49,21 @@ class App_model extends CI_Model {
 
     }
 
+    // This function pulls the application status of the specified user
+    function check_user_status($id)
+    {
+      $q = $this->db->get_where('applications', array('user_id' => $id));
+
+      if ($q->num_rows() > 0)
+      {
+        $row = $q->row_array();
+        $status = $row['app_status'];
+      }
+      else{
+        $status = 'Not Started';
+      }
+
+      return $status;
+    }
+
 }

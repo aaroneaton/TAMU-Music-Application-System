@@ -21,6 +21,9 @@ class Apply extends CI_Controller {
       // Check to see if an application exists for the student
       $user = $this->ion_auth->get_user();
       $data['id'] = $user->id;
+
+      $data['app_status'] = $this->App_model->check_user_status($data['id']);
+
       $data['app'] = $this->App_model->check_user_app($data['id']);
       if (!isset ($data['app'])){
         $data['app_link'] = anchor('apply/new_app', 'Start Application');

@@ -3,7 +3,8 @@
 echo 'You made it!';
 echo '<br />';
 echo 'You are an applicant.';
-
+echo '<br />';
+echo 'Your application status: ' . $app_status;
 echo '<br />';
 echo $id;
 echo '<br />';
