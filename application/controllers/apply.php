@@ -43,18 +43,6 @@ class Apply extends CI_Controller {
     }
 
     /*
-     * This method loads the first page of the application process.
-     * 
-     * On this page will be a video showing how to use the application system
-     * along with instructions.
-     */
-    function create_app()
-    {
-        $data['main_content'] = 'apply/create_view';
-        $this->load->view('includes/template', $data);
-    }
-
-    /*
      * The new_app() method in it's current state loads, validates, and
      * passes application info to the method.
      *
