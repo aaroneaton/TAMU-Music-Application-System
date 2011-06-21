@@ -53,27 +53,16 @@ class Apply extends CI_Controller {
     {
       $this->output->enable_profiler(TRUE);
 
-
-      $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
-      $this->form_validation->set_rules('inst_areas[]', 'error', '');
-      $this->form_validation->set_rules('ensembles[]', 'error', '');
-      $this->form_validation->set_rules('perf_aud', 'error', '');
-      $this->form_validation->set_rules('music_background', 'Music Background', 'required|min_length[5]');
-      $this->form_validation->set_rules('music_interest', 'Music Interest', 'required|min_length[5]');
-      $this->form_validation->set_rules('music_goals', 'Music Goals', 'required|min_length[5]');
-      $this->form_validation->set_rules('awards_honors', 'Awards & Honors', '');
-      $this->form_validation->set_rules('correct_info', 'Correct Information', 'required');
-      // The following rules may need to be moved to accommodate for
-      // Freshman/Transfer status.
-      //
-      // $this->form_validation->set_rules('grad_month', 'Graduation Month', 'required');
-      // $this->form_validation->set_rules('app_tamu', 'TAMU Application', 'required');
+      // Call up the validation rules for this form
+      $this->form_validate_rules();
 
       if($this->form_validation->run() == FALSE)
       {
+        // Call up all of the form attributes
         $data = $this->create_form();
 
-        $data['main_content'] = 'apply/create_form_view';
+        // Set apply_form_view.php as the view and pass the $data array to the template
+        $data['main_content'] = 'apply/apply_form_view';
         $this->load->view('includes/template', $data);
       }
       else {
@@ -90,261 +79,300 @@ class Apply extends CI_Controller {
         $this->App_model->create($post);
         // @todo - Create 'success' or 'fail' messages and pass to view
 
-        $data['main_content'] = 'apply/create_success_view';
+        $data['main_content'] = 'apply/apply_form_view';
         $this->load->view('includes/template', $data);
       }
 
     }
 
 
+
+    function form_validate_rules()
+    {
+      $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
+      $this->form_validation->set_rules('inst_areas[]', 'error', '');
+      $this->form_validation->set_rules('ensembles[]', 'error', '');
+      $this->form_validation->set_rules('perf_aud', 'error', '');
+      $this->form_validation->set_rules('music_background', 'Music Background', 'required|min_length[5]');
+      $this->form_validation->set_rules('music_interest', 'Music Interest', 'required|min_length[5]');
+      $this->form_validation->set_rules('music_goals', 'Music Goals', 'required|min_length[5]');
+      $this->form_validation->set_rules('awards_honors', 'Awards & Honors', '');
+      $this->form_validation->set_rules('correct_info', 'Correct Information', 'required');
+      // The following rules may need to be moved to accommodate for
+      // Freshman/Transfer status.
+      //
+      // $this->form_validation->set_rules('grad_month', 'Graduation Month', 'required');
+      // $this->form_validation->set_rules('app_tamu', 'TAMU Application', 'required');
+      
+    }
+
+
     function create_form()
     {
 
-            $user = $this->ion_auth->get_user();
-            $data['id'] = $user->id;
+      $user = $this->ion_auth->get_user();
+      $data['id'] = $user->id;
 
-            /**** Start General Fieldset ****/
+      /**** Start General Fieldset ****/
 
-            // Attributes for General Questions fieldset
-            $data['general_field'] = array(
-                'id'    => 'general_field',
-                'class' => 'span-10 last'
-            );
+      // Attributes for General Questions fieldset
+      $data['general_field'] = array(
+        'id'    => 'general_field',
+        'class' => 'span-10 last'
+      );
 
-            // Attributes for Current GPA
-            $data['curr_gpa'] = array(
-                'name'      => 'curr_gpa',
-                'id'        => 'curr_gpa',
-                'maxlength' => '3'
-            );
-
-
-            // Attributes for Interested Areas
-            $data['inst_areas'] = array(
-                'composition'   => array(
-                  'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'composition'
-                ),
-                'musc_hist'      => array(
-                        'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'musc_hist'
-                ),
-                'musc_theo'      => array(
-                        'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'musc_theo'
-                ),
-                'ethno_musc'      => array(
-                        'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'ethno_musc'
-                ),
-                'musc_tech'      => array(
-                        'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'musc_tech'
-                ),
-                'musc_perf'      => array(
-                        'name'      => 'inst_areas[]',
-                        'id'        => 'inst_areas',
-                        'value'     => 'musc_perf'
-                ),
-            );
-
-            // Attributes for Ensembles
-            $data['ensembles'] = array(
-                'brazos_chorale'   => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'brazos_chorale'
-                ),
-                'cent_singers'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'cent_singers'
-                ),
-                'singing_cadets'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'singing_cadets'
-                ),
-                'womens_chorus'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'womens_chorus'
-                ),
-                'bvso'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'bvso'
-                ),
-                'aggie_band'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'aggie_band'
-                ),
-                'concert_band'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'concert_band'
-                ),
-                'symph_band'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'symph_band'
-                ),
-                'wind_symph'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'wind_symph'
-                ),
-                'jazz_band'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'jazz_band'
-                ),
-                'small_ens'      => array(
-                        'name'      => 'ensembles[]',
-                        'id'        => 'ensembles',
-                        'value'     => 'small_ens'
-                ),
-            );
-
-            // Attributes for Intended Minor
-            $data['int_minor'] = array(
-                'name'  => 'int_minor',
-                'id'    => 'int_minor',
-            );
-
-            // Attributes for Audition
-            // These are just test items. Will reference a database in future
-            // @todo - Pull options from database
-            $data['perf_aud'] = array(
-                'mar'   => 'March 2011',
-                'may'   => 'May 2011',
-                'aug'   => 'August 2011'
-            );
-
-            /**** End General Fieldset ****/
-            
-            /**** Start Freshmen Fieldset ****/
-            // Attributes for Freshmen Fieldset
-            $data['freshmen_field'] = array(
-                'id'    => 'freshman_field',
-                'class' => 'span-10 last'
-            );
-            
-            // Attributes for High School
-            $data['high_school'] = array(
-                'name'  => 'high_school',
-                'id'    => 'high_school'
-            );
-
-            // Attributes for Graduation Month
-            $data['grad_month'] = array(
-                ''    => '',
-                '01'    => '01',
-                '02'    => '02',
-                '03'    => '03',
-                '04'    => '04',
-                '05'    => '05',
-                '06'    => '06',
-                '07'    => '07',
-                '08'    => '08',
-                '09'    => '09',
-                '10'    => '10',
-                '11'    => '11',
-                '12'    => '12',
-            );
-
-            // Attributes for Graduation Year
-            $data['grad_year'] = array(
-                ''  => '',
-                '2011'  => '2011',
-                '2012'  => '2012',
-                '2013'  => '2013'
-            );
-
-            // Attributes for TAMU App
-            $data['app_tamu'] = array(
-                ''    => '',
-                'yes'   => 'Yes',
-                'no'    => 'No'
-            );
-
-            // Attributes for Test Scores
-            $data['sat_act'] = array(
-                'name'  => 'sat_act',
-                'id'    => 'sat_act'
-            );
+      // Attributes for Current GPA
+      $data['curr_gpa'] = array(
+        'name'      => 'curr_gpa',
+        'id'        => 'curr_gpa',
+        'maxlength' => '3'
+      );
 
 
-            /**** End Freshment Fieldset ****/
+      // Attributes for Interested Areas
+      $data['inst_areas'] = array(
+        'composition'   => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'composition',
+          'checked' => 'checked'
+        ),
 
-            /**** Start Transfer Fieldset ****/
+        'musc_hist'      => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'musc_hist'
+        ),
 
-            // Attributes for Transfer Fieldset
-            $data['transfer_field'] = array(
-                'id'    => 'transfer_field',
-                'class' => 'span-10 last'
-            );
+        'musc_theo'      => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'musc_theo'
+        ),
 
-            // Attributes for Current Institution
-            $data['curr_inst'] = array(
-                'name'  => 'curr_inst',
-                'id'    => 'curr_inst'
-            );
+        'ethno_musc'      => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'ethno_musc'
+        ),
 
-            // Attributes for Current Major
-            $data['curr_maj'] = array(
-                'name'  => 'curr_maj',
-                'id'    => 'curr_maj'
-            );
+        'musc_tech'      => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'musc_tech'
+        ),
 
-            /**** End Transfer Fieldset ****/
+        'musc_perf'      => array(
+          'name'      => 'inst_areas[]',
+          'id'        => 'inst_areas',
+          'value'     => 'musc_perf'
+        ),
 
-            /**** Start Textarea responses ****/
+      );
 
-            // Attributes for music background
-            $data['music_background'] = array(
-                'name'  => 'music_background',
-                'id'    => 'music_background',
-                'class' => 'app-form-text',
-            );
+      // Attributes for Ensembles
+      $data['ensembles'] = array(
 
-            // Attributes for music interest
-            $data['music_interest'] = array(
-                'name'  => 'music_interest',
-                'id'    => 'music_interest',
-                'class' => 'app-form-text',
-            );
+        'brazos_chorale'   => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'brazos_chorale'
+        ),
 
-            // Attributes for music goals
-            $data['music_goals'] = array(
-                'name'  => 'music_goals',
-                'id'    => 'music_goals',
-                'class' => 'app-form-text',
-            );
+        'cent_singers'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'cent_singers'
+        ),
 
-            // Attributes for awards and honors
-            $data['awards_honors'] = array(
-                'name'  => 'awards_honors',
-                'id'    => 'awards_honors',
-                'class' => 'app-form-text',
-            );
+        'singing_cadets'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'singing_cadets'
+        ),
 
-            /**** End Textarea responses ****/
+        'womens_chorus'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'womens_chorus'
+        ),
 
-            // Attributes for correct info checkbox
-            $data['correct_info'] = array(
-                'name'  => 'correct_info',
-                'id'    => 'correct_info',
-                'value' => 'correct_info'
-            );
+        'bvso'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'bvso'
+        ),
+        'aggie_band'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'aggie_band'
+        ),
 
-            return $data;
+        'concert_band'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'concert_band'
+        ),
+
+        'symph_band'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'symph_band'
+        ),
+
+        'wind_symph'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'wind_symph'
+        ),
+
+        'jazz_band'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'jazz_band'
+        ),
+
+        'small_ens'      => array(
+          'name'      => 'ensembles[]',
+          'id'        => 'ensembles',
+          'value'     => 'small_ens'
+        ),
+
+      );
+
+      // Attributes for Intended Minor
+      $data['int_minor'] = array(
+        'name'  => 'int_minor',
+        'id'    => 'int_minor',
+      );
+
+      // Attributes for Audition
+      // These are just test items. Will reference a database in future
+      // @todo - Pull options from database
+      $data['perf_aud'] = array(
+        'mar'   => 'March 2011',
+        'may'   => 'May 2011',
+        'aug'   => 'August 2011'
+      );
+
+      /**** End General Fieldset ****/
+      
+      /**** Start Freshmen Fieldset ****/
+      // Attributes for Freshmen Fieldset
+      $data['freshmen_field'] = array(
+        'id'    => 'freshman_field',
+        'class' => 'span-10 last'
+      );
+      
+      // Attributes for High School
+      $data['high_school'] = array(
+        'name'  => 'high_school',
+        'id'    => 'high_school'
+      );
+
+      // Attributes for Graduation Month
+      $data['grad_month'] = array(
+        ''    => '',
+        '01'    => '01',
+        '02'    => '02',
+        '03'    => '03',
+        '04'    => '04',
+        '05'    => '05',
+        '06'    => '06',
+        '07'    => '07',
+        '08'    => '08',
+        '09'    => '09',
+        '10'    => '10',
+        '11'    => '11',
+        '12'    => '12',
+      );
+
+      // Attributes for Graduation Year
+      $data['grad_year'] = array(
+        ''  => '',
+        '2011'  => '2011',
+        '2012'  => '2012',
+        '2013'  => '2013'
+      );
+
+      // Attributes for TAMU App
+      $data['app_tamu'] = array(
+        ''    => '',
+        'yes'   => 'Yes',
+        'no'    => 'No'
+      );
+
+      // Attributes for Test Scores
+      $data['sat_act'] = array(
+        'name'  => 'sat_act',
+        'id'    => 'sat_act'
+      );
+
+
+      /**** End Freshment Fieldset ****/
+
+      /**** Start Transfer Fieldset ****/
+
+      // Attributes for Transfer Fieldset
+      $data['transfer_field'] = array(
+        'id'    => 'transfer_field',
+        'class' => 'span-10 last'
+      );
+
+      // Attributes for Current Institution
+      $data['curr_inst'] = array(
+        'name'  => 'curr_inst',
+        'id'    => 'curr_inst'
+      );
+
+      // Attributes for Current Major
+      $data['curr_maj'] = array(
+        'name'  => 'curr_maj',
+        'id'    => 'curr_maj'
+      );
+
+      /**** End Transfer Fieldset ****/
+
+      /**** Start Textarea responses ****/
+
+      // Attributes for music background
+      $data['music_background'] = array(
+        'name'  => 'music_background',
+        'id'    => 'music_background',
+        'class' => 'app-form-text',
+      );
+
+      // Attributes for music interest
+      $data['music_interest'] = array(
+        'name'  => 'music_interest',
+        'id'    => 'music_interest',
+        'class' => 'app-form-text',
+      );
+
+      // Attributes for music goals
+      $data['music_goals'] = array(
+        'name'  => 'music_goals',
+        'id'    => 'music_goals',
+        'class' => 'app-form-text',
+      );
+
+      // Attributes for awards and honors
+      $data['awards_honors'] = array(
+        'name'  => 'awards_honors',
+        'id'    => 'awards_honors',
+        'class' => 'app-form-text',
+      );
+
+      /**** End Textarea responses ****/
+
+      // Attributes for correct info checkbox
+      $data['correct_info'] = array(
+        'name'  => 'correct_info',
+        'id'    => 'correct_info',
+        'value' => 'correct_info'
+      );
+
+      return $data;
 
     }
     /*

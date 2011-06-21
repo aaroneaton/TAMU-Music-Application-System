@@ -8,7 +8,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('apply/create_form'); ?>
+<?php echo form_open('apply/new_app'); ?>
 
 <?php echo form_hidden('id', $id); ?>
 
@@ -141,4 +141,4 @@
          I hereby attest that the information given is correct to the best of my knowledge.</h5>
     </div>
 
-<div class="span-10"><?php echo form_submit('submit_app', 'Submit!'); ?></div>
+<div class="span-10"><?php echo form_submit('submit_app', 'Save Application'); ?></div>
