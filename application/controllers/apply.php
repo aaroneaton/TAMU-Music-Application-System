@@ -51,23 +51,54 @@ class Apply extends CI_Controller {
      */
     function new_app()
     {
-        $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
-        $this->form_validation->set_rules('inst_areas[]', 'error', '');
-        $this->form_validation->set_rules('ensembles[]', 'error', '');
-        $this->form_validation->set_rules('perf_aud', 'error', '');
-        $this->form_validation->set_rules('music_background', 'Music Background', 'required|min_length[5]');
-        $this->form_validation->set_rules('music_interest', 'Music Interest', 'required|min_length[5]');
-        $this->form_validation->set_rules('music_goals', 'Music Goals', 'required|min_length[5]');
-        $this->form_validation->set_rules('awards_honors', 'Awards & Honors', '');
-        $this->form_validation->set_rules('correct_info', 'Correct Information', 'required');
-        // The following rules may need to be moved to accommodate for
-        // Freshman/Transfer status.
-        //
-        // $this->form_validation->set_rules('grad_month', 'Graduation Month', 'required');
-        // $this->form_validation->set_rules('app_tamu', 'TAMU Application', 'required');
+      $this->output->enable_profiler(TRUE);
 
-        if($this->form_validation->run() == FALSE)
-        {
+
+      $this->form_validation->set_rules('curr_gpa', 'Current GPA', 'required|max_length[3]');
+      $this->form_validation->set_rules('inst_areas[]', 'error', '');
+      $this->form_validation->set_rules('ensembles[]', 'error', '');
+      $this->form_validation->set_rules('perf_aud', 'error', '');
+      $this->form_validation->set_rules('music_background', 'Music Background', 'required|min_length[5]');
+      $this->form_validation->set_rules('music_interest', 'Music Interest', 'required|min_length[5]');
+      $this->form_validation->set_rules('music_goals', 'Music Goals', 'required|min_length[5]');
+      $this->form_validation->set_rules('awards_honors', 'Awards & Honors', '');
+      $this->form_validation->set_rules('correct_info', 'Correct Information', 'required');
+      // The following rules may need to be moved to accommodate for
+      // Freshman/Transfer status.
+      //
+      // $this->form_validation->set_rules('grad_month', 'Graduation Month', 'required');
+      // $this->form_validation->set_rules('app_tamu', 'TAMU Application', 'required');
+
+      if($this->form_validation->run() == FALSE)
+      {
+        $data = $this->create_form();
+
+        $data['main_content'] = 'apply/create_form_view';
+        $this->load->view('includes/template', $data);
+      }
+      else {
+        
+        // Get the array of info submitted from the form and
+        // serialize it.
+
+        $post = array(
+            'user_id'    => $this->input->post('id'),
+            'serial_app'    => serialize($_POST)
+            );
+            
+        // Now send the serialized array to the model to create the record
+        $this->App_model->create($post);
+        // @todo - Create 'success' or 'fail' messages and pass to view
+
+        $data['main_content'] = 'apply/create_success_view';
+        $this->load->view('includes/template', $data);
+      }
+
+    }
+
+
+    function create_form()
+    {
 
             $user = $this->ion_auth->get_user();
             $data['id'] = $user->id;
@@ -91,7 +122,7 @@ class Apply extends CI_Controller {
             // Attributes for Interested Areas
             $data['inst_areas'] = array(
                 'composition'   => array(
-                        'name'      => 'inst_areas[]',
+                  'name'      => 'inst_areas[]',
                         'id'        => 'inst_areas',
                         'value'     => 'composition'
                 ),
@@ -313,27 +344,9 @@ class Apply extends CI_Controller {
                 'value' => 'correct_info'
             );
 
-            $data['main_content'] = 'apply/create_form_view';
-            $this->load->view('includes/template', $data);
-        }
-        else
-        {
-            // Get the array of info submitted from the form and
-            // serialize it.
-            $post = array(
-                'user_id'    => $this->input->post('id'),
-                'serial_app'    => serialize($_POST)
-            );
-            
-            // Now send the serialized array to the model to create the record
-            $this->App_model->create($post);
-            // @todo - Create 'success' or 'fail' messages and pass to view
+            return $data;
 
-            $data['main_content'] = 'apply/create_success_view';
-            $this->load->view('includes/template', $data);
-        }
     }
-
     /*
      * The show_app() method retrieves the application from the database
      * and presents it to the user.
