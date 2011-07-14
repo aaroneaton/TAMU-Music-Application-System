@@ -38,4 +38,46 @@ class App_model extends CI_Model {
       }
     }
 
+    // We need to count the number of recommendations the user has and display it.
+    function count_user_recs($id)
+    {
+      $this->db->where('app_id', $id);
+      $this->db->from('recommendations');
+      $q = $this->db->count_all_results();
+
+      return $q;
+
+    }
+
+    // This function pulls the application status of the specified user
+    function check_user_status($id)
+    {
+      $q = $this->db->get_where('applications', array('user_id' => $id));
+
+      if ($q->num_rows() > 0)
+      {
+        $row = $q->row_array();
+        $status = $row['app_status'];
+      }
+      else{
+        $status = 'Not Started';
+      }
+
+      return $status;
+    }
+
+    // Used mainly for apply/rec_requests, this method retrieves the recommendations of the user,
+    // the recommender's full name and email address and sends it to the controller.
+    function get_user_recs($id)
+    {
+      $q = $this->db->get_where('applications', array('app_id' => $id));
+
+      if ($q->num_rows() > 0) {
+        $serialized = $q->row_array();
+        $rec = unserialize($serialized['serial_rec']);
+
+        return $rec;
+      }
+    }
+
 }

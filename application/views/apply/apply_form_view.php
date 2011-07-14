@@ -8,7 +8,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('apply/create_form'); ?>
+<?php echo form_open('apply/new_app'); ?>
 
 <?php echo form_hidden('id', $id); ?>
 
@@ -61,7 +61,7 @@
     <br /><br />
 
     <h5>When will you perform an audition?</h5>
-        <?php echo form_dropdown('perf_aud', $perf_aud, $this->input->post('perf_aud')); ?>
+        <?php echo form_dropdown('perf_aud', $perf_aud, $perf_aud_select); ?>
 
 <?php echo form_fieldset_close(); ?>
 
@@ -75,13 +75,13 @@
 
     <!-- drop down(2) - Graduation Date -->
     <h5>When will you graduate?</h5>
-        <?php echo form_dropdown('grad_month', $grad_month, $this->input->post('grad_month')); ?> /
-        <?php echo form_dropdown('grad_year', $grad_year, $this->input->post('grad_year')); ?>
+        <?php echo form_dropdown('grad_month', $grad_month, $grad_month_select); ?> /
+        <?php echo form_dropdown('grad_year', $grad_year, $grad_year_select); ?>
     <br /><br />
 
     <!-- drop down - Applied to TAMU -->
     <h5>Have you applied to TAMU?</h5>
-        <?php echo form_dropdown('app_tamu', $app_tamu, $this->input->post('app_tamu')); ?>
+        <?php echo form_dropdown('app_tamu', $app_tamu, $app_tamu_select); ?>
     <br /><br />
 
     <!-- input - Test Scores -->
@@ -141,4 +141,4 @@
          I hereby attest that the information given is correct to the best of my knowledge.</h5>
     </div>
 
-<div class="span-10"><?php echo form_submit('submit_app', 'Submit!'); ?></div>
+<div class="span-10"><?php echo form_submit('submit_app', 'Save Application'); ?></div>
