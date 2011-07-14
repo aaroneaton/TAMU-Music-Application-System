@@ -66,4 +66,18 @@ class App_model extends CI_Model {
       return $status;
     }
 
+    // Used mainly for apply/rec_requests, this method retrieves the recommendations of the user,
+    // the recommender's full name and email address and sends it to the controller.
+    function get_user_recs($id)
+    {
+      $q = $this->db->get_where('applications', array('app_id' => $id));
+
+      if ($q->num_rows() > 0) {
+        $serialized = $q->row_array();
+        $rec = unserialize($serialized['serial_rec']);
+
+        return $rec;
+      }
+    }
+
 }

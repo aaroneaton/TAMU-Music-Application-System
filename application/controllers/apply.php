@@ -587,4 +587,32 @@ class Apply extends CI_Controller {
         $this->load->view('includes/template', $data);
     }
 
+    function rec_request()
+    {
+      
+      // Retrieve existing recommendation records from database if exists
+      //
+      // Send data to view
+      //
+      
+    }
+    
+    }
+    function rec_request_submit()
+    {
+      // Get information from recommendation request form
+      //
+      // Create temporary password
+      //
+      // Check to see if user exists based on email address
+      //
+      // Create new user in database
+      //
+      // Create recommendation record and mark incomplete
+      //
+      // Build email
+      //
+      // Send email
+    }
+
 }
